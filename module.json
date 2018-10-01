@@ -1,0 +1,10 @@
+{
+    "title": "Cors",
+    "version": "1.0",
+    "description": "Cors middleware.",
+    "type": "middleware",
+    "disabled": false,
+    "help": {
+        "url": "https://enable-cors.org/server.html"
+    }
+}
