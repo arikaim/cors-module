@@ -9,13 +9,23 @@
 */
 namespace Arikaim\Modules\Cors;
 
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+
 use Arikaim\Core\Packages\Module\Module;
 
 /**
  * Cors middleware module class
  */
-class Cors extends Module
+class Cors extends Module implements MiddlewareInterface
 {
+    /**
+     * CORS config
+     *
+     * @var array
+     */
     protected $config = [
         'credentials'   => 'true',
         'origin'        => '*',
@@ -24,26 +34,19 @@ class Cors extends Module
     ];
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-    }
-
-    /**
-     * Middleware code
-     *
-     * @param object $request
-     * @param object $response
-     * @param object $next
-     * @return void
-     */
-    public function __invoke($request, $response, $next)
-    {
-        $response = $next($request, $response);
-        return $response->withHeader('Access-Control-Allow-Credentials',$this->config['credentials'])
+     * Process middleware
+     * 
+     * @param ServerRequestInterface  $request
+     * @param RequestHandlerInterface $handler
+     * @return ResponseInterface
+    */
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {       
+        $request->withHeader('Access-Control-Allow-Credentials',$this->config['credentials'])
             ->withHeader('Access-Control-Allow-Origin',$this->config['origin'])
             ->withHeader('Access-Control-Allow-Methods',$this->config['methods'])
             ->withHeader('Access-Control-Allow-Headers',$this->config['headers']);
+
+        return $handler->handle($request);
     }
 }
