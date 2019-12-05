@@ -2,7 +2,7 @@
     "title": "Cors",
     "name": "cors",
     "package-type": "module",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Cors middleware.",
     "type": "middleware",
     "disabled": false,
