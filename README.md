@@ -1,6 +1,6 @@
 # Cors middleware module
-(https://img.shields.io/github/release/arikaim/cors-module.svg)
-(https://img.shields.io/badge/License-GPLv3-blue.svg)
+![](https://img.shields.io/github/release/arikaim/cors-module.svg)
+![](https://img.shields.io/badge/License-GPLv3-blue.svg)
 
 
 Arikaim CMS CORS middleware module
