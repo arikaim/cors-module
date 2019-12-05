@@ -1,12 +1,12 @@
 # Cors middleware module
-[version: 1.0.0](https://img.shields.io/github/release/arikaim/cors-module.svg)
-[license: GPL3](https://img.shields.io/badge/License-GPLv3-blue.svg)
+(https://img.shields.io/github/release/arikaim/cors-module.svg)
+(https://img.shields.io/badge/License-GPLv3-blue.svg)
 
 
 Arikaim CMS CORS middleware module
 
 
-### Requirements 
+#### Requirements 
   * PHP 7.1
   * [Arikaim CMS](https://github.com/arikaim/arikaim)
 
