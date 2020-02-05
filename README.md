@@ -12,10 +12,8 @@ Arikaim CMS CORS (Cross origin resource sharing) middleware module.
 
 
 
-#### Install
+#### Installation
 
-```bash
-
+```sh
 composer require arikaim/cors-module
-
 ```

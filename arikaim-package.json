@@ -6,6 +6,6 @@
     "description": "Cors middleware.",
     "type": "middleware",
     "disabled": false,
-    "repository":"https://github.com/arikaim/cors-module.git",
-    "help": "https://enable-cors.org/server.html"      
+    "repository": "https://github.com/arikaim/cors-module.git",
+    "help":"https://enable-cors.org/server.html"           
 }
