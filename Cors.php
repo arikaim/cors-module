@@ -29,8 +29,8 @@ class Cors extends Module implements MiddlewareInterface
     protected $config = [
         'credentials'   => 'true',
         'origin'        => '*',
-        'methods'       => 'POST, GET, OPTIONS, PUT, DELETE',
-        'headers'       => 'Origin, Content-Type, Accept, Authorization, X-Request-With, Authorization, Params'
+        'methods'       => 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+        'headers'       => 'X-Requested-With, Origin, Content-Type, Accept, Authorization, X-Request-With, Authorization, Params'
     ];
 
     /**
@@ -42,11 +42,12 @@ class Cors extends Module implements MiddlewareInterface
     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {       
-        $request->withHeader('Access-Control-Allow-Credentials',$this->config['credentials'])
-            ->withHeader('Access-Control-Allow-Origin',$this->config['origin'])
-            ->withHeader('Access-Control-Allow-Methods',$this->config['methods'])
-            ->withHeader('Access-Control-Allow-Headers',$this->config['headers']);
+        $response = $handler->handle($request);
 
-        return $handler->handle($request);
+        return $response
+                    ->withHeader('Access-Control-Allow-Credentials',$this->config['credentials'])
+                    ->withHeader('Access-Control-Allow-Origin',$this->config['origin'])
+                    ->withHeader('Access-Control-Allow-Methods',$this->config['methods'])
+                    ->withHeader('Access-Control-Allow-Headers',$this->config['headers']);        
     }
 }
