@@ -30,7 +30,7 @@ class Cors extends Module implements MiddlewareInterface
         'credentials'   => 'true',
         'origin'        => '*',
         'methods'       => 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-        'headers'       => 'X-Requested-With, Origin, Content-Type, Accept, Authorization, X-Request-With, Authorization, Params'
+        'headers'       => '*, Authorization'
     ];
 
     /**
@@ -48,6 +48,6 @@ class Cors extends Module implements MiddlewareInterface
                     ->withHeader('Access-Control-Allow-Credentials',$this->config['credentials'])
                     ->withHeader('Access-Control-Allow-Origin',$this->config['origin'])
                     ->withHeader('Access-Control-Allow-Methods',$this->config['methods'])
-                    ->withHeader('Access-Control-Allow-Headers',$this->config['headers']);        
+                    ->withHeader('Access-Control-Allow-Headers',$this->config['headers']);       
     }
 }
