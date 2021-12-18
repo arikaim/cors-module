@@ -14,40 +14,21 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+use Arikaim\Modules\Cors\CorsMiddleware;
 use Arikaim\Core\Extension\Module;
 
 /**
  * Cors middleware module class
  */
-class Cors extends Module implements MiddlewareInterface
+class Cors extends Module 
 {
     /**
-     * CORS config
+     * Boot module
      *
-     * @var array
+     * @return void
      */
-    protected $config = [
-        'credentials'   => 'true',
-        'origin'        => '*',
-        'methods'       => 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-        'headers'       => '*, Authorization'
-    ];
-
-    /**
-     * Process middleware
-     * 
-     * @param ServerRequestInterface  $request
-     * @param RequestHandlerInterface $handler
-     * @return ResponseInterface
-    */
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
-    {       
-        $response = $handler->handle($request);
-
-        return $response
-                    ->withHeader('Access-Control-Allow-Credentials',$this->config['credentials'])
-                    ->withHeader('Access-Control-Allow-Origin',$this->config['origin'])
-                    ->withHeader('Access-Control-Allow-Methods',$this->config['methods'])
-                    ->withHeader('Access-Control-Allow-Headers',$this->config['headers']);       
+    public function boot()
+    {
+        $this->addMiddlewareClass(CorsMiddleware::class);
     }
 }
