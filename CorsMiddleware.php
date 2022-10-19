@@ -41,9 +41,18 @@ class CorsMiddleware extends Middleware implements MiddlewareInterface
                 ->withHeader('Access-Control-Allow-Credentials',$config['credentials'])
                 ->withHeader('Access-Control-Allow-Origin',$config['origin'])
                 ->withHeader('Access-Control-Allow-Methods',$config['methods'])
-                ->withHeader('Access-Control-Allow-Headers',$config['headers']);    
-             
+                ->withHeader('Access-Control-Allow-Headers',$config['headers']);
+
+        // is cors preflight request
+        if (
+            $request->hasHeader('Origin') == true &&
+            $request->getMethod() == 'OPTIONS' &&
+            $request->hasHeader('Access-Control-Request-Method') == true
+        ) {
+            \Arikaim\Core\Framework\ResponseEmiter::emitHeaders($response);
+            exit();
+        }
+
         return [$request,$response];            
     }
-
 }
